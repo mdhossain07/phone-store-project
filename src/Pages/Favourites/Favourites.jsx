@@ -18,6 +18,8 @@ const Favourites = () => {
         getPhones.includes(phone.id)
       );
       setAddFavourites(savedPhones);
+
+      console.log(savedPhones);
       const total = savedPhones.reduce(
         (prev, current) => prev + current.price,
         0
@@ -30,6 +32,7 @@ const Favourites = () => {
   const handleClearData = () => {
     localStorage.clear();
     setAddFavourites([]);
+    setPrice(0);
     swal("Good!", "Products successfully deleted", "success");
   };
 
@@ -67,7 +70,7 @@ const Favourites = () => {
       </div>
 
       <div>{addFavourites.length === 0 && <p>No Data Found!!!</p>}</div>
-      <div className="">
+      <div className={addFavourites.length <= 2 && "hidden"}>
         <button
           onClick={handleShowMore}
           className="bg-blue-500 px-3 py-4 rounded-lg text-white"
